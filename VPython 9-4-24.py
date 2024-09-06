@@ -54,7 +54,7 @@ def Simulation(speed, angle, height, mass):
 Simulation(speed = 1, angle = 1, height = 1, mass = 1)
 
 """
-Theory is about the phyics
+Theory is about the physics
 Method is about the code
 
 """
