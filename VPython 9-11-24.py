@@ -20,6 +20,30 @@ def simulation(m_sun, m_earth, v_sun, v_earth, pos_sun, pos_earth):
     T = 0
     period_count = 0  # Counter to ensure we print the period only once per orbit
     
+    esvx_graph = graph(title = "Earth's x-velocity vs. time", xtitle = "Time (s)", ytitle = "Velocity (m/s)")
+    esvx_curve = gcurve(color = color.blue)
+    
+    esvy_graph = graph(title = "Earth's y-velocity vs. time", xtitle = "Time (s)", ytitle = "Velocity (m/s)")
+    esvy_curve = gcurve(color = color.blue)
+    
+    espt_graph = graph(title = "Earth's momentum vs. time", xtitle = "Time (s)", ytitle = "Momentum (kg m/s)")
+    
+    vx_e = gcurve(graph = esvx_graph, color = color.blue)
+    vy_e = gcurve(graph = esvy_graph, color = color.blue)
+    p_e = gcurve(graph = espt_graph, color = color.blue)
+    
+    svx_graph = graph(title = "Sun's x-velocity vs. time", xtitle = "Time (s)", ytitle = "Velocity (m/s)")
+    svx_curve = gcurve(color = color.orange)
+    
+    svy_graph = graph(title = "Sun's y-velocity vs. time", xtitle = "Time (s)", ytitle = "Velocity (m/s)")
+    svy_curve = gcurve(color = color.orange)
+    
+    svpt_graph = graph(title = "Sun's momentum vs. time", xtitle = "Time (s)", ytitle = "Momentum (kg m/s)")
+    
+    vx_s = gcurve(graph = svx_graph, color = color.orange)
+    vy_s = gcurve(graph = svy_graph, color = color.orange)
+    p_s = gcurve(graph = svpt_graph, color = color.orange)
+    
     while t < 2 * 365 * 24 * 3600:  # Simulate for 2 years to ensure we capture at least 1 orbit
         rate(100000)
         r = earth.pos - sun.pos
@@ -39,6 +63,21 @@ def simulation(m_sun, m_earth, v_sun, v_earth, pos_sun, pos_earth):
             print("Period is: ", T / 24 / 3600, "days")
             period_count += 1  # Ensure we print only once for the orbit
             T = 0  # Reset the period timer
+            
+        esvx_curve.plot(pos = (T, earth.v.x))
+        esvy_curve.plot(pos = (T, earth.v.y))
+        esvx_curve.plot(pos = (T, earth.v.x))
+        vx_e.plot(pos = (T, earth.v.x))
+        vy_e.plot(pos = (T, earth.v.y))
+        p_e.plot(pos = (T, earth.p.mag))
+        
+        svx_curve.plot(pos = (T, sun.v.x))
+        svy_curve.plot(pos = (T, sun.v.y))
+        svx_curve.plot(pos = (T, sun.v.x))
+        vx_s.plot(pos = (T, sun.v.x))
+        vy_s.plot(pos = (T, sun.v.y))
+        p_s.plot(pos = (T, sun.p.mag))
+        
         T += dt     
         t += dt
 
