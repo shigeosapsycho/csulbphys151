@@ -79,6 +79,5 @@ while t < 10:
         old_velocity_count += 1
     if old_velocity_count == 3:
         print(f"the period is {T}") 
-        
 
     t += dt
