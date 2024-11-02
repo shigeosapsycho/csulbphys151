@@ -43,7 +43,7 @@ print(speed)
 
 car = create_objects(R)
 set_up(car, speed, mass)
-energy_graph, kinetic_curve, zero_curve, = set_up_graph('Energy', 't', 'J')
+energy_graph, kinetic_curve, zero_curve = set_up_graph('Energy', 't', 'J')
 t = 0
 dt = 0.01
 
