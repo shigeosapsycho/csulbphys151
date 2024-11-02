@@ -1,5 +1,3 @@
-Web VPython 3.2
-
 from vpython import *
 
 canvas(background=color.white)
